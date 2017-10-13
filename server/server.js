@@ -29,7 +29,7 @@ router.use((req, res, next) => {
 	next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+// test route to make sure everything is working (accessed at GET http://localhost:8001/api)
 router.get('/', function (req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
 });
@@ -40,7 +40,7 @@ router.get('/', function (req, res) {
 // ---------------------------------------------------------------
 router.route('/jokes')
 
-// create a joke (accessed at POST http://localhost:8080/api/jokes)
+// create a joke (accessed at POST http://localhost:8001/api/jokes)
 	.post((req, res) => {
 		var joke = new Joke(); // create a new instance of the Joke model
 		joke.joke = req.body.joke; // est the jokes joke (comes from the request)
@@ -54,7 +54,7 @@ router.route('/jokes')
 		});
 	})
 
-// get all the jokes (accessed at GET http://localhost:8080/api/jokes)
+// get all the jokes (accessed at GET http://localhost:8001/api/jokes)
 	.get((req, res) => {
 		Joke.find((err, jokes) => {
 			if (err)
@@ -68,7 +68,7 @@ router.route('/jokes')
 // ---------------------------------------------------------------
 router.route('/jokes/:joke_id')
 
-// get the joke with thatid (accessed at GET http://localhost/8080/api/jokes/:joke_id)
+// get the joke with thatid (accessed at GET http://localhost/8001/api/jokes/:joke_id)
 	.get((req, res) => {
 		Joke.findById(req.params.joke_id, (err, joke) => {
 			if (err) res.send(err);
@@ -77,7 +77,7 @@ router.route('/jokes/:joke_id')
 		});
 	})
 
-// update the joke with this id (accessed at PUT http://localhost:8080/api/jokes/:joke_id)
+// update the joke with this id (accessed at PUT http://localhost:8001/api/jokes/:joke_id)
 	.put((req, res) => {
 
 		// use our joke model to find the joke we want
@@ -95,7 +95,7 @@ router.route('/jokes/:joke_id')
 		});
 	})
 
-// delete the bear with this id (accessed at DELETE http://localhost:8080/api/jokes/:joke_id)
+// delete the bear with this id (accessed at DELETE http://localhost:8001/api/jokes/:joke_id)
 	.delete((req,res) => {
 		Joke.remove({
 			_id: req.params.joke_id
